@@ -22,8 +22,8 @@ services:
       MINIO_ROOT_PASSWORD: minioadmin123
     command: server /data --console-address ":9001"
     ports:
-      - "9000:9000"  
-      - "9001:9001"  
+      - "9000:9000"  # API
+      - "9001:9001"  # Panel web
     volumes:
       - ./data/minio:/data
 
@@ -40,7 +40,6 @@ services:
       - "8000:8000"
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000
 
-
   frontend:
     build: ./frontend
     container_name: drive-frontend
@@ -51,5 +50,3 @@ services:
       - ./frontend/.env
     ports:
       - "5173:5173"
-
-
