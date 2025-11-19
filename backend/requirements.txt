@@ -3,3 +3,7 @@ uvicorn[standard]
 motor
 minio
 python-multipart
+
+pytest
+pytest-asyncio
+httpx
