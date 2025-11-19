@@ -60,6 +60,12 @@ JWT_SECRET=your-secret-key
 JWT_ALGORITHM=HS256
 ```
 
+And inside the `frontend/` directory create a file named `.env`:
+
+```
+VITE_API_BASE_URL=http://localhost:8000
+```
+
 ### 3. Start all services
 ```bash
 docker compose up --build
