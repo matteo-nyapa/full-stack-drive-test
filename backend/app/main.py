@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routes import files
+from app.routes import files, auth, folders # 👈 añade auth
 
 app = FastAPI(title="Drive Backend", version="0.1.0")
 
@@ -24,4 +24,6 @@ def health_check():
     return {"status": "ok"}
 
 
+app.include_router(auth.router)
+app.include_router(folders.router)# 👈 nuevo
 app.include_router(files.router)

@@ -7,3 +7,6 @@ python-multipart
 pytest
 pytest-asyncio
 httpx
+asgi_lifespan
+passlib
+python-jose[cryptography]

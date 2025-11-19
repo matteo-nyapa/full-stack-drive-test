@@ -7,3 +7,5 @@ MONGO_DB_NAME = os.getenv("MONGO_DB_NAME", "drive")
 client = AsyncIOMotorClient(MONGO_URI)
 db = client[MONGO_DB_NAME]
 files_collection = db["files"]
+users_collection = db["users"]
+folders_collection = db["folders"]
