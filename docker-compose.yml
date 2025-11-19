@@ -22,8 +22,8 @@ services:
       MINIO_ROOT_PASSWORD: minioadmin123
     command: server /data --console-address ":9001"
     ports:
-      - "9000:9000"  # API
-      - "9001:9001"  # Panel web
+      - "9000:9000"  
+      - "9001:9001"  
     volumes:
       - ./data/minio:/data
 
@@ -51,4 +51,5 @@ services:
       - ./frontend/.env
     ports:
       - "5173:5173"
+
 
