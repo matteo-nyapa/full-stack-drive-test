@@ -21,8 +21,13 @@ jobs:
           --health-timeout=5s
           --health-retries=5
 
+    defaults:
+      run:
+        working-directory: backend
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -30,23 +35,28 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        working-directory: ./backend
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run tests
-        working-directory: ./backend
         env:
           MONGO_URI: "mongodb://mongo:27017"
           MONGO_DB_NAME: "drive_test"
-        run: pytest
+          PYTHONPATH: .
+        run: |
+          python -m pytest -vv
 
   frontend-build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: frontend
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -54,11 +64,9 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        working-directory: ./frontend
         run: npm install
 
       - name: Build
-        working-directory: ./frontend
         env:
           VITE_API_BASE_URL: "http://localhost:8000"
         run: npm run build
